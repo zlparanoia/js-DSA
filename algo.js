@@ -1,5 +1,5 @@
 //  1.数组、字符去重  //
-数组：
+//数组：//
 function uniqArray(arr) {
     var str = [];   // 新数组
     var obj = {};   // 创建一个空对象
@@ -15,7 +15,7 @@ function uniqArray(arr) {
     return str;
 }
 
-字符串：
+//字符串：//
 function uniqArray(arr) {
     var str = [];   // 新数组
     var obj = {};   // 创建一个空对象
