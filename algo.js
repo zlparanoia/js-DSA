@@ -30,3 +30,24 @@ function uniqArray(arr) {
     }
     return str.join("");
 }
+
+// 2.字符重复 //
+function repeat(str, n){
+     return new Array(n + 1).join(str);
+}
+console.log(repeat("a",3));
+
+// 3.找出第一个重复的字符 //
+function strRepeat(str){
+	var obj = {};
+	for(var i = 0, len = str.length; i < str.length; i++) {
+		var key = str[i];
+		if(!obj[key]) {
+			obj[key] = 1;
+		} else {
+			return str[i];
+		}
+	}
+}
+var str = [3,5,4,3];
+alert(strRepeat(str));   //3
