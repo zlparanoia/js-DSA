@@ -51,3 +51,45 @@ function strRepeat(str){
 }
 var str = [3,5,4,3];
 alert(strRepeat(str));   //3
+
+//  4.深度克隆 //
+//判断对象类型
+function isType(o) {
+	if(o === null) {
+		return "Null";
+	} else if (o === undefined) {
+		return "Undefined";
+	} else {
+		//截取对象类型
+		return Object.prototype.toString.call(o).slice(8,-1);
+	}
+}
+//深度克隆
+function deepClone(obj) {
+	//存放克隆的新对象
+	var result;
+	//存放变量的类型
+	var type = isType(obj);
+	//检测变量是对象还是数组
+	if(type == "Object") {
+		result = {};
+	} else if (type == "Array") {
+		result = [];
+	} else {
+		return obj;
+	}
+	//遍历原对象
+	for(var key in obj) {
+		//存放原对象每个属性的值
+		var copy = obj[key];
+		//检测原对象每个值的类型
+		if(isType(copy) == "Array") {
+			result[key] = arguments.callee(copy);   //调用自身
+		} else if (isType(copy) == "Object") {
+			result[key] = arguments.callee(copy);   //调用自身
+		} else {
+			result[key] = obj[key];
+		}
+	}
+	return result;
+}
