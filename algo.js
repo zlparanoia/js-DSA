@@ -93,3 +93,27 @@ function deepClone(obj) {
 	}
 	return result;
 }
+
+// 5.实现一个简单的继承 //
+function Animal(name){
+     this.name = name;
+}
+Animal.prototype.getName = function(){
+     return this.name;
+};
+function Dog(){}
+Dog.prototype = new Animal("panda");
+var dog = new Dog();
+var n = dog.getName();
+alert(n);       //panda
+
+// 6.判断是否为IE浏览器，返回-1或者版本号 //
+function isIE() {
+    if(!+[1,]) {        //+[1,]在ie上==NaN, NaN永恒==false, !NaN永恒==true; +[1,]在非ie上==1,1==true,!1==false
+         var agent = navigator.userAgent.toLowerCase();
+         var vertion = /msie ([\d.]+)/.exec(agent);
+         return vertion[1];
+    } else {
+         return -1;
+    }
+}
