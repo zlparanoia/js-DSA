@@ -117,3 +117,78 @@ function isIE() {
          return -1;
     }
 }
+
+// 7.查找两个节点的最近一个共同父节点，可以包括自身
+function commonParentNode(oNode1, oNode2) {
+    if(oNode1.contains(oNode2)){  //contains()：检测某个节点是不是另一个节点的后代，1是2的父节点
+        return oNode1;
+    }else if(oNode2.contains(oNode1)){  //2是1的父节点
+        return oNode2;
+    }else{
+        return arguments.callee(oNode1.parentNode,oNode2); //1和2为同辈，1的父节点包含2
+    }
+}
+// 8.提取额url参数
+function getUrlParam(sUrl, sKey) {
+	var params = sUrl.slice(sUrl.indexOf("?") + 1, sUrl.length),
+		names = params.split("&"),
+		nameArr,
+		name,
+		value,
+		obj = {},
+		i,
+		temp,
+		len = names.length;
+	for (i = 0; i < len; i++) {
+		nameArr = names[i].split("=");
+		name = nameArr[0];
+		value = nameArr[1];
+
+		if (typeof obj[name] === "undefined") {
+			
+			obj[name] = value;
+		} else if (!Array.isArray(obj[name])) {
+			temp = obj[name];
+			obj[name] = [];
+			obj[name].push(temp, value);
+		} else {
+			obj[name].push(value);
+		}
+	}
+	if (sKey === undefined) {
+		return obj;
+	} else {
+		return obj[sKey] || "";
+	}
+}
+console.log(getUrlParam('http://www.nowcoder.com?key=1&key=2&key=3&test=4#hehe',"key"));
+
+// 9.斐波那契数列，返回第几个数的值
+function fibonacci(n) {
+    if (n === 0 || n === 1) {
+    	return n;
+    } else {
+    	return fibonacci(n-1) + fibonacci(n-2);
+    }  
+}
+console.log(fibonacci(10));
+
+// 10.获取字符串的长度
+function strLength(s, bUnicode255For1) {
+	var sLength = 0,
+		i,
+		len = s.length;
+    if (bUnicode255For1) {
+    	return s.length;
+    } else {
+    	for (i = 0; i < len; i++) {
+    		if (s.charCodeAt(i) > 255) {
+    			sLength += 2;
+    		} else {
+    			sLength += 1;
+    		}
+    	}
+    }
+    return sLength;
+}
+console.log(strLength('hello', true));
