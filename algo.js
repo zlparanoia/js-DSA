@@ -192,3 +192,41 @@ function strLength(s, bUnicode255For1) {
     return sLength;
 }
 console.log(strLength('hello', true));
+
+//11、完成foo()函数的内容，要求能够弹出对话框提示当前选中的是第几个单选框。
+function foo() {
+	var radios = document.getElementsByName("radio"),
+		i,
+		len = radios.length;
+	for (i = 0; i < len; i++) {
+		radios[i].onclick = function() {
+			if (this.checked) {
+				alert("the" + i + "selected");
+			}
+		};
+
+	}
+}
+//12、字符串翻转功能
+function reverse(str) {
+	return str.split("").reverse().join("");
+}
+//13、全选(或者全不选)的所有指定名称的checkbox
+function seleAll() {
+	var all = document.getElementsByName("checkbox"),
+		sub = document.getElementById("sub"),
+		i,
+		j,
+		len = all.length;
+	if (sub.value === "全选") {
+		for (i = 0; i < len; i++) {
+			all[i].checked = true;
+			sub.value = "全不选";
+		}
+	} else {
+		for (i = 0; i < len; i++) {
+			all[i].checked = false;
+			sub.value = "全选";
+		}
+	}
+}
