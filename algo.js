@@ -230,3 +230,10 @@ function seleAll() {
 		}
 	}
 }
+//14、写出简单描述html标签（不带属性的开始标签和结束标签）的正则表达式，
+//并将以下字符串中的html标签去除掉 var str = "<div>这里是div<p>里面的段落</p></div>";
+function deleteTag(str) {
+	var re = /<\/?[a-z]+\/?>/gi;
+	str = str.replace(re, "");
+	return str;
+}
