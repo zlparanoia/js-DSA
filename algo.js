@@ -237,3 +237,43 @@ function deleteTag(str) {
 	str = str.replace(re, "");
 	return str;
 }
+//15、将文档中className有“test”的td标签背景色设为黄色
+function changeBg() {
+	var tds = document.getElementsByTagName("td"),
+		i,
+		len = tds.length;
+	for (i = 0; i < len; i++) {
+		(tds[i].className === "test") && (tds[i].style.background = "yellow");
+	}
+}
+//16、用javascript实现控制一个文本框的输入字数限制，超出字数限制文本框飘红显示
+function changeColor() {
+	var content = document.getElementById("content");
+	content.onkeyup = function() {
+		(content.value.length > 10) && (content.style.border = "2px solid red");
+	};
+}
+//17、使用Javascript打印出1-10000之间的所有素数
+function printNum(start, end) {
+	var i,
+		j,
+		flag = false,
+		arr = [];
+	if ((start === end) || (start > end)) {
+		return;
+	} else if ((start < 0) || (end < 0)) {
+		return;
+	} else {
+		start = 2;
+	}
+	for (i = start; i < end; i++) {
+		for (j = 2; j <= (i / 2); j++) { //最小倍数是2,如果不是素数的话，它的倍数肯定在(i/2)的范围内
+			if ((i % j) === 0) {
+				flag = true;
+			}
+		}
+		(!flag) && (arr.push(i));
+		(flag) && (flag = false);
+	}
+	return arr;
+}
